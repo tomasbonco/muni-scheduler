@@ -4,7 +4,7 @@ Tento nástroj slúži ako pomôcka na tvorbu rozvrhu pre MUNI.
 
 ## Ako ho nainštalovať?
 
-Na localhoste stačí mať XAMPP, netreba mať DB. Na komplikáciu Coffee, Jade a Less odporúčam Prepos.
+Na localhoste stačí mať XAMPP, netreba mať DB. Na komplikáciu Coffee, Jade a Less odporúčam Prepros.
 Ak netušíš, o čom rozprávam, kašli nato a využi online verziu na http://schedule.comper.sk
 
 ## Chcem sa zapojiť
