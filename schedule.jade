@@ -1,0 +1,148 @@
+html
+
+	head
+
+		meta( charset="utf-8" )
+	
+		link( rel="stylesheet", href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" )
+		link( rel="stylesheet", href="css/style.css" )
+
+
+	body
+
+		#schedule
+
+			.hours
+
+				.empty
+				.hour 7.00
+				.hour 8.00
+				.hour 9.00
+				.hour 10.00
+				.hour 11.00
+				.hour 12.00
+				.hour 13.00
+				.hour 14.00
+				.hour 15.00
+				.hour 16.00
+				.hour 17.00
+				.hour 18.00
+				.hour 19.00
+				.hour 20.00
+				.hour 21.00
+
+
+			#days
+
+				script( id="day-template", type="text/x-handlebars-template")
+					
+					{{#each days}}
+
+					.day
+						.day-name {{name}}
+						.classes
+
+							{{#each line}}
+
+							.line
+
+								{{#each this}}
+
+								{{#if lecture}}
+
+								.lecture( style="width: {{width}}%; left: {{left}}%" )
+
+									.content
+										.name( title="{{code}}" ) {{code}}
+										.who( title="{{name}}" ) {{name}}
+
+								{{else}}
+
+								.class( data-class="{{subject}}", data-seminar="{{code}}" class="{{class}}" style="width: {{width}}%; background: rgb( {{color}} ); left: {{left}}%" )
+
+									.lock.pull-right( title="Zvoliť túto" ): i.glyphicon.glyphicon-lock
+
+									{{#if note}}
+									.note.pull-right( title="{{note}}" ): i.glyphicon.glyphicon-exclamation-sign
+									{{/if}}
+
+									.content
+										.name( title="{{code}} ( {{room}} )" ) {{code}} ( {{room}} )
+										.who( title="{{teacher.name}}" ): a( target="_blank", href="https://is.muni.cz/auth/osoba/{{teacher.link}}" ) {{teacher.name}}
+								
+								{{/if}}
+								{{/each}}
+
+							{{/each}}
+
+					{{/each}}
+
+		.both
+
+		.container
+
+			.row
+
+				.col-xs-7
+
+					#switch
+
+						.row
+
+							.col-xs-offset-3.col-xs-3 Finálne zobrazenie
+							.col-xs-3: input(type="checkbox")#final-view
+
+					#classes
+
+						script( id="class-template", type="text/x-handlebars-template")
+
+							{{#each class}}
+							.row
+
+								.col-xs-3
+									
+									.color-preview( style="background: rgb( {{color}} );" )
+									| {{code}}
+
+								.col-xs-7 {{name}}
+
+								.col-xs-2
+									i.glyphicon.glyphicon-refresh.change-color( data-code="{{code}}", title="Zmeniť farbu")
+									i.glyphicon.glyphicon-remove.remove( data-code="{{code}}", title="Odstrániť predmet")
+
+							{{/each}}
+
+
+				.col-xs-4.col-xs-offset-1
+
+
+					#errors
+
+						script( id="error-template", type="text/x-handlebars-template" )
+
+							.error
+
+								.close &times;
+								.message {{ message }}
+
+					label.block Pridaj predmety podľa kódov:
+					input#class_input.block.col-xs-12( type="text" )
+
+					p
+
+						em Zadaj jeden alebo viac predmetov oddelených čiarkou. Zadávaj v tvare kod_fakulty:kod_predmetu (FI:MB101).
+
+					input#create.btn( type="submit" )
+
+
+					.sign_out(style="margin-top: 100px")
+
+						label.block Odhlásiť sa
+
+						#sign_out.btn Odhlásiť
+
+
+	script( src="js/inc/jquery.js" )
+	script( src="js/inc/handlebars.js" )
+	script( data-main="js/app.js" src="js/inc/require.js" )
+	script show_schedule = true

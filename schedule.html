@@ -1,0 +1,106 @@
+
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+  </head>
+  <body>
+    <div id="schedule">
+      <div class="hours">
+        <div class="empty"></div>
+        <div class="hour">7.00</div>
+        <div class="hour">8.00</div>
+        <div class="hour">9.00</div>
+        <div class="hour">10.00</div>
+        <div class="hour">11.00</div>
+        <div class="hour">12.00</div>
+        <div class="hour">13.00</div>
+        <div class="hour">14.00</div>
+        <div class="hour">15.00</div>
+        <div class="hour">16.00</div>
+        <div class="hour">17.00</div>
+        <div class="hour">18.00</div>
+        <div class="hour">19.00</div>
+        <div class="hour">20.00</div>
+        <div class="hour">21.00</div>
+      </div>
+      <div id="days">
+        <script id="day-template" type="text/x-handlebars-template">{{#each days}}
+          <div class="day">
+            <div class="day-name">{{name}}</div>
+            <div class="classes">{{#each line}}
+              <div class="line">
+                {{#each this}}
+                {{#if lecture}}
+                <div style="width: {{width}}%; left: {{left}}%" class="lecture">
+                  <div class="content">
+                    <div title="{{code}}" class="name">{{code}}</div>
+                    <div title="{{name}}" class="who">{{name}}</div>
+                  </div>
+                </div>{{else}}
+                <div data-class="{{subject}}" data-seminar="{{code}}" style="width: {{width}}%; background: rgb( {{color}} ); left: {{left}}%" class="class {{class}}">
+                  <div title="Zvoliť túto" class="lock pull-right"><i class="glyphicon glyphicon-lock"></i></div>{{#if note}}
+                  <div title="{{note}}" class="note pull-right"><i class="glyphicon glyphicon-exclamation-sign"></i></div>{{/if}}
+                  <div class="content">
+                    <div title="{{code}} ( {{room}} )" class="name">{{code}} ( {{room}} )</div>
+                    <div title="{{teacher.name}}" class="who"><a target="_blank" href="https://is.muni.cz/auth/osoba/{{teacher.link}}">{{teacher.name}}</a></div>
+                  </div>
+                </div>{{/if}}
+                {{/each}}
+              </div>{{/each}}
+            </div>
+          </div>{{/each}}
+        </script>
+      </div>
+    </div>
+    <div class="both"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-7">
+          <div id="switch">
+            <div class="row">
+              <div class="col-xs-offset-3 col-xs-3">Finálne zobrazenie</div>
+              <div class="col-xs-3">
+                <input type="checkbox" id="final-view"/>
+              </div>
+            </div>
+          </div>
+          <div id="classes">
+            <script id="class-template" type="text/x-handlebars-template">{{#each class}}
+              <div class="row">
+                <div class="col-xs-3">
+                  <div style="background: rgb( {{color}} );" class="color-preview"></div>{{code}}
+                </div>
+                <div class="col-xs-7">{{name}}</div>
+                <div class="col-xs-2"><i data-code="{{code}}" title="Zmeniť farbu" class="glyphicon glyphicon-refresh change-color"></i><i data-code="{{code}}" title="Odstrániť predmet" class="glyphicon glyphicon-remove remove"></i></div>
+              </div>{{/each}}
+            </script>
+          </div>
+        </div>
+        <div class="col-xs-4 col-xs-offset-1">
+          <div id="errors">
+            <script id="error-template" type="text/x-handlebars-template">
+              <div class="error">
+                <div class="close">&times;</div>
+                <div class="message">{{ message }}</div>
+              </div>
+            </script>
+          </div>
+          <label class="block">Pridaj predmety podľa kódov:</label>
+          <input id="class_input" type="text" class="block col-xs-12"/>
+          <p><em>Zadaj jeden alebo viac predmetov oddelených čiarkou. Zadávaj v tvare kod_fakulty:kod_predmetu (FI:MB101).</em></p>
+          <input id="create" type="submit" class="btn"/>
+          <div style="margin-top: 100px" class="sign_out">
+            <label class="block">Odhlásiť sa</label>
+            <div id="sign_out" class="btn">Odhlásiť</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="js/inc/jquery.js"></script>
+  <script src="js/inc/handlebars.js"></script>
+  <script data-main="js/app.js" src="js/inc/require.js"></script>
+  <script>show_schedule = true</script>
+</html>

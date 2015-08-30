@@ -1,0 +1,109 @@
+body
+{
+	padding: 0;
+	margin: 0;
+}
+
+.btn
+{
+	display: inline-block;
+	padding: 12px 28px 12px;
+
+	margin-top: 12px;
+
+	.box-sizing(border-box);
+
+	background: none;
+	color: @ruby;
+	border: 2px solid @ruby;
+	.border-radius( 6px );
+
+	text-decoration: none;
+	font-weight: 500;
+	line-height: 22px;
+
+	cursor: pointer;
+
+	.transition( 0.25s );
+
+	&:hover, &:focus
+	{
+		text-decoration: none;
+		background: @ruby;
+		color: #fff;
+	}
+
+	&:active, &.active
+	{
+		border-color: @ruby;
+		background: @ruby;
+		color: rgba(255, 255, 255, 0.75);
+	}
+
+	&.disabled
+	{
+		color: #fff;
+		border: 2px solid @maroh;
+		background: @maroh;
+
+		&:hover, &:focus
+		{
+			text-decoration: none;
+			background: @maroh;
+			border: 2px solid @maroh-dark;
+			color: #fff;
+		}
+	}
+
+}
+
+.block
+{
+	display: block;
+}
+
+a.nostyle
+{
+	text-decoration: inherit;
+	color: inherit;
+
+	&.btn
+	{
+		color: #fff;
+	}
+}
+
+.text-left
+{
+	text-align: left;
+}
+
+.text-center
+{
+	text-align: center;
+}
+
+.text-right
+{
+	text-align: right;
+}
+
+.pull-right
+{
+	float: right;
+}
+
+.pull-left
+{
+	float: left;
+}
+
+.both
+{
+	clear: both;
+}
+
+.hide
+{
+	display: none;
+}
